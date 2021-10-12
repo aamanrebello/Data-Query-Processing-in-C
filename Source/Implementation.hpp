@@ -18,15 +18,15 @@ int HashjoinRunQuery(HashjoinDatabase database, int edgeLabel1, int edgeLabel2, 
 void HashjoinDeleteEdge(HashjoinDatabase database, int fromNodeID, int toNodeID, int edgeLabel);
 void HashjoinDeleteDatabase(HashjoinDatabase database);
 
-typedef void* CompetitionDatabase;
-CompetitionDatabase CompetitionAllocateDatabase(unsigned long totalNumberOfEdgesInTheEnd);
-void CompetitionInsertEdge(CompetitionDatabase database, int fromNodeID, int toNodeID,
+typedef void* ExperimentDatabase;
+ExperimentDatabase ExperimentAllocateDatabase(unsigned long totalNumberOfEdgesInTheEnd);
+void ExperimentInsertEdge(ExperimentDatabase database, int fromNodeID, int toNodeID,
                            int edgeLabel);
-int CompetitionRunQuery(CompetitionDatabase database, int edgeLabel1, int edgeLabel2,
+int ExperimentRunQuery(ExperimentDatabase database, int edgeLabel1, int edgeLabel2,
                         int edgeLabel3);
-void CompetitionDeleteEdge(CompetitionDatabase database, int fromNodeID, int toNodeID,
+void ExperimentDeleteEdge(ExperimentDatabase database, int fromNodeID, int toNodeID,
                            int edgeLabel);
-void CompetitionDeleteDatabase(CompetitionDatabase database);
+void ExperimentDeleteDatabase(ExperimentDatabase database);
 }
 
 struct SortMergeJoinImplementation {
@@ -51,7 +51,7 @@ struct HashjoinImplementation {
   std::function<void(void* sVoid)> const deleteDatabase = ::HashjoinDeleteDatabase;
 };
 
-struct CompetitionImplementation {
+struct ExperimentImplementation {
   std::function<void(void* sVoid, int from, int to, int label)> const insertEdge =
       ::HashjoinInsertEdge;
   std::function<void(void* sVoid, int fromNode, int toNode, int label)> const deleteEdge =
