@@ -1,4 +1,4 @@
-# Data-Query-Processing-in-C
+# Database Query Implementations
 Implementations of sort-merge join and hash join (as used in RDBMS) algorithms in C.
 
 ## Context
