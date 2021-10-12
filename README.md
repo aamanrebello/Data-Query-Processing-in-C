@@ -25,18 +25,25 @@ The query may then be evaluated by joining copies of the above table based in eq
 
 The code is in the [Source](Source) folder:
 - [*Implementation.c*](Source/Implementation.c) contains the implementations of both the algorithms. It provides for setting up the database (implemented as an in-memory array encapsulated in a struct), inserting and removing edges. The code is itself highly documented.
-- [*Implementation.h*](Source/ShapeCount.h) provides an external API that a program can use to manipulate the query processing system. There is a set of functions for setting up the database and querying it using sort-merge joins. There is a similar set of functions for doing so with hash-join. The functions whose identifiers contain 'Competition' can be ignored - these currently reimplement hash-join and are intended for further exploration of query processing techniques.
-- [*testing.c*](Source/testing.c) DOES NOT DEPEND ON THE OTHER FILES. It can be directly run as a normal C program. It is mostly a copy of *ShapeCount.c* except for the `main()` function at the bottom. It illustrates how a database can be allocated, populated and queried in this system (without using the API defined above).
+- [*Implementation.h*](Source/Implementation.h) provides an external API that a program can use to manipulate the query processing system. There is a set of functions for setting up the database and querying it using sort-merge joins. There is a similar set of functions for doing so with hash-join. The functions whose identifiers contain 'Competition' can be ignored - these currently reimplement hash-join and are intended for further exploration of query processing techniques.
+- [*testing.c*](Source/testing.c) is a test of the API offered by *Implementation.h*. It calls the functions to perform queries then outputs the results to the console.
 
 ## Prerequisites 
 
 The only prerequisite is a C compiler e.g. GCC.
 
 # How to Run
-Using GCC to run *testing.c*: enter the following in the Command Prompt from within the *Source* directory. 
+To run *testing.c*, first compile *testing.c* and *Implementation.c* into object files. 
 ```
-gcc testing.c -o executable
+gcc -c testing.c -o test.o
+gcc -c Implementation.c -o impl.o
 ```
+
+Then link the object files:
+```
+gcc -o executable test.o impl.o
+```
+
 Followed by:
 `./executable` in Linux/MacOS or
 `executable.exe` in Windows.
