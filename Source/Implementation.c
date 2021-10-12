@@ -38,15 +38,15 @@ int HashjoinRunQuery(HashjoinDatabase database, int edgeLabel1, int edgeLabel2, 
 void HashjoinDeleteEdge(HashjoinDatabase database, int fromNodeID, int toNodeID, int edgeLabel);
 void HashjoinDeleteDatabase(HashjoinDatabase database);
 
-typedef void* CompetitionDatabase;
-CompetitionDatabase CompetitionAllocateDatabase(unsigned long totalNumberOfEdgesInTheEnd);
-void CompetitionInsertEdge(CompetitionDatabase database, int fromNodeID, int toNodeID,
+typedef void* ExperimentDatabase;
+ExperimentDatabase ExperimentAllocateDatabase(unsigned long totalNumberOfEdgesInTheEnd);
+void ExperimentInsertEdge(ExperimentDatabase database, int fromNodeID, int toNodeID,
                            int edgeLabel);
-int CompetitionRunQuery(CompetitionDatabase database, int edgeLabel1, int edgeLabel2,
+int ExperimentRunQuery(ExperimentDatabase database, int edgeLabel1, int edgeLabel2,
                         int edgeLabel3);
-void CompetitionDeleteEdge(CompetitionDatabase database, int fromNodeID, int toNodeID,
+void ExperimentDeleteEdge(ExperimentDatabase database, int fromNodeID, int toNodeID,
                            int edgeLabel);
-void CompetitionDeleteDatabase(CompetitionDatabase database);
+void ExperimentDeleteDatabase(ExperimentDatabase database);
 
 
 //-------------------------------- SUB DATABASE ---------------------------------------------
@@ -1082,12 +1082,12 @@ void HashjoinDeleteDatabase(HashjoinDatabase database)
   free(database);
 }
 
-//-------------------------COMPETITION (USES HASH JOIN)------------------------------------------
+//-------------------------EXPERIMENT (CURRENTLY USES HASH JOIN)------------------------------------------
 
-CompetitionDatabase CompetitionAllocateDatabase(unsigned long totalNumberOfEdgesInTheEnd)
+ExperimentDatabase ExperimentAllocateDatabase(unsigned long totalNumberOfEdgesInTheEnd)
 {
   //Allocate space for MainDB struct instance
-  CompetitionDatabase c = malloc(sizeof(MainDB));
+  ExperimentDatabase c = malloc(sizeof(MainDB));
   //implicit type conversion allowed by C but not by cmake environment.
   MainDB* m = (MainDB*)c;
   //Allocate space for table array etc within MainDB instance.
@@ -1097,15 +1097,15 @@ CompetitionDatabase CompetitionAllocateDatabase(unsigned long totalNumberOfEdges
   return c;
 }
 
-void CompetitionInsertEdge(CompetitionDatabase database, int fromNodeID, int toNodeID, int edgeLabel)
+void ExperimentInsertEdge(ExperimentDatabase database, int fromNodeID, int toNodeID, int edgeLabel)
 {
   //implicit type conversion allowed by C but not by cmake environment.
   MainDB* m = (MainDB*)database;
-  //Insert (same API as CompetitionInsertEdge)
+  //Insert (same API as ExperimentInsertEdge)
   insert_maindb(m, fromNodeID, toNodeID, edgeLabel);
 }
 
-int CompetitionRunQuery(CompetitionDatabase database, int edgeLabel1, int edgeLabel2, int edgeLabel3)
+int ExperimentRunQuery(ExperimentDatabase database, int edgeLabel1, int edgeLabel2, int edgeLabel3)
 {
   //implicit type conversion allowed by C but not by cmake environment.
   MainDB* m = (MainDB*)database;
@@ -1133,15 +1133,15 @@ int CompetitionRunQuery(CompetitionDatabase database, int edgeLabel1, int edgeLa
   return result;
 }
 
-void CompetitionDeleteEdge(CompetitionDatabase database, int fromNodeID, int toNodeID, int edgeLabel)
+void ExperimentDeleteEdge(ExperimentDatabase database, int fromNodeID, int toNodeID, int edgeLabel)
 {
   //implicit type conversion allowed by C but not by cmake environment.
   MainDB* m = (MainDB*)database;
-  //Delete (same API as CompetitionDeleteEdge)
+  //Delete (same API as ExperimentDeleteEdge)
   delete_maindb(m, fromNodeID, toNodeID, edgeLabel);
 }
 
-void CompetitionDeleteDatabase(CompetitionDatabase database)
+void ExperimentDeleteDatabase(ExperimentDatabase database)
 {
   //implicit type conversion allowed by C but not by cmake environment.
   MainDB* m = (MainDB*)database;
