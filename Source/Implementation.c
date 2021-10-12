@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "Implementation.h"
 
 // We define maximum initial size of a hash table (i.e. a partition) as 512 for partitioning -
 #define MAX_HT_SIZE 512
