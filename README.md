@@ -7,7 +7,7 @@ The query operates on a graph with uniquely numbered nodes and directed edges wh
 
 ![image](GraphVisual.png)
 
-It performs a query that counts the number of edge triangles having a particular sequence of edge numbers. For example, for an edge number sequence of '0,1,2', the result of the query would be 2 for the above diagram.
+It performs a query that counts the number of edge triangles having a particular sequence of edge numbers. For example, for an edge number sequence of '0,2,3', the result of the query would be 2 for the above diagram.
 
 The graph is represented as a relational database table, with the following schema to represent every edge in the graph.
 
